@@ -1,4 +1,4 @@
-# StudyNotion   [```live```](Live Link Here)
+# StudyNotion   (Live Link - comming soon)
 
 StudyNotion is a fully functional LMS that enables users to create, consume, and rate educational content. The platform is built using the ```MERN stack``` , which includes ```ReactJS```,``` NodeJS```, ```MongoDB```, and ```ExpressJS```.
 
@@ -56,10 +56,6 @@ This starter pack includes a basic setup for using **Tailwind CSS with React**. 
     npm run dev
     ```
 
-## Contributing
-
-Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request. 
 
 ## Contact
 - Email: kambojshubham277@gmail.com
-- Linkedin: 
