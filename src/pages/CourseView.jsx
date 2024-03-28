@@ -18,7 +18,7 @@ import { HiOutlineGlobeAlt } from "react-icons/hi";
 
 import CourseAccordionBar from "../components/Cources/CourseAccordionBar.jsx";
 import CourseDetailsCard from "../components/Cources/CourseDetailsCard.jsx";
-// import { buyCourse } from "../services/operations/studentFeaturesAPI";
+import { buyCourse } from "../services/operations/studentFeaturesApi.js";
 
 const CourseView = () => {
   const { user } = useSelector((state) => state.profile);
@@ -28,15 +28,13 @@ const CourseView = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { courseId } = useParams(); // Getting courseId from url parameter
+  const { courseId } = useParams(); 
 
-  // Declear a state to save the course details
   const [confirmationModal, setConfirmationModal] = useState(null);
   const [response, setResponse] = useState(null);
 
   useEffect(() => {
     (async () => {
-      // Calling fetchCourseDetails fucntion to fetch the details
       try {
         const res = await fetchCourseDetails(courseId);
         setResponse(res);
@@ -46,7 +44,6 @@ const CourseView = () => {
     })();
   }, [courseId]);
 
-  // Calculating Avg Review count
   const [avgReviewCount, setAvgReviewCount] = useState(0);
   useEffect(() => {
     const count = GetAvgRating(response?.data?.courseDetails.ratingAndReviews);
@@ -98,20 +95,20 @@ const CourseView = () => {
     createdAt,
   } = response.data?.courseDetails;
 
-  // const handleBuyCourse = () => {
-  //   if (token) {
-  //     buyCourse(token, [courseId], user, navigate, dispatch);
-  //     return;
-  //   }
-  //   setConfirmationModal({
-  //     text1: "You are not logged in!",
-  //     text2: "Please login to Purchase Course.",
-  //     btn1Text: "Login",
-  //     btn2Text: "Cancel",
-  //     btn1Handler: () => navigate("/login"),
-  //     btn2Handler: () => setConfirmationModal(null),
-  //   });
-  // };
+  const handleBuyCourse = () => {
+    if (token) {
+      buyCourse(token, [courseId], user, navigate, dispatch);
+      return;
+    }
+    setConfirmationModal({
+      text1: "You are not logged in!",
+      text2: "Please login to Purchase Course.",
+      btn1Text: "Login",
+      btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    });
+  };
 
   if (paymentLoading) {
     return (
@@ -181,8 +178,9 @@ const CourseView = () => {
             <CourseDetailsCard
               course={response?.data?.courseDetails}
               setConfirmationModal={setConfirmationModal}
+              handleBuyCourse={handleBuyCourse}
             />
-            {/* handleBuyCourse={handleBuyCourse} */}
+            
           </div>
         </div>
       </div>

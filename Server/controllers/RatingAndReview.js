@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import RatingAndReview from "../models/RatingAndReview.js";
 import Course from "../models/Course.js";
 import mongoose from "mongoose";
@@ -20,16 +21,16 @@ export const createRating = async (req, res) => {
       });
     }
 
-    const alreadyReviewed = await findOne({ user: userId, course: courseId });
+    const alreadyReviewed = await RatingAndReview.findOne({ user: userId, course: courseId });
 
     if (alreadyReviewed) {
       return res.status(403).json({
         success: false,
-        message: "Course is already reviewed by the user",
+        message: "You have already reviewed the course",
       });
     }
 
-    const ratingReview = await create({
+    const ratingReview = await RatingAndReview.create({
       rating,
       review,
       course: courseId,

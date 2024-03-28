@@ -31,7 +31,7 @@ import {
   getAllRating,
 } from "../controllers/RatingAndReview.js"; // Import Rating controllers
 import { auth, isInstructor, isStudent, isAdmin } from "../middleware/Auth.js"; // Import Middleware
-// import { updateCourseProgress } from "../controllers/"; // Import updateCourseProgress controller
+import { updateCourseProgress } from "../controllers/courseProgress.js"; 
 
 // Course routes (only by Instructors)
 router.post("/createCourse", auth, isInstructor, createCourse); // Courses can Only be Created by Instructors
@@ -48,7 +48,7 @@ router.post("/getCourseDetails", getCourseDetails); // Get Details for a Specifi
 router.post("/editCourse", auth, isInstructor, editCourse); // Edit Course routes
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses); // Get all Courses Under a Specific Instructor
 router.delete("/deleteCourse", deleteCourse); // Delete a Course
-// router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
+router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 
 // Category routes (Only by Admin)
 router.post("/createCategory", auth, isAdmin, createCategory);

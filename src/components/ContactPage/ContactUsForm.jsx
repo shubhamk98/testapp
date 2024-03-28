@@ -17,7 +17,6 @@ const ContactUsForm = () => {
   const submitContactForm = async (data) => {
     const toastId = toast.loading("Loading...");
     setLoading(true);
-    console.log(data);
     try {
       await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
     } catch (error) {
@@ -47,8 +46,8 @@ const ContactUsForm = () => {
       <div className="flex flex-col gap-5 lg:flex-row">
         <div className="flex flex-col gap-2 lg:w-[48%]">
           <label htmlFor="firstname" className="lable-style">
-            {" "}
-            First Name{" "}
+            
+            First Name
           </label>
           <input
             type="text"
@@ -60,16 +59,16 @@ const ContactUsForm = () => {
           />
           {errors.firstname && (
             <span className="-mt-1 text-[12px] text-yellow-100">
-              {" "}
-              Please enter your name.{" "}
+              
+              Please enter your name.
             </span>
           )}
         </div>
 
         <div className="flex flex-col gap-2 lg:w-[48%]">
           <label htmlFor="lastname" className="lable-style">
-            {" "}
-            Last Name{" "}
+            
+            Last Name
           </label>
           <input
             type="text"
@@ -84,8 +83,8 @@ const ContactUsForm = () => {
 
       <div className="flex flex-col gap-2">
         <label htmlFor="email" className="lable-style">
-          {" "}
-          Email Address{" "}
+          
+          Email Address
         </label>
         <input
           type="email"
@@ -97,16 +96,16 @@ const ContactUsForm = () => {
         />
         {errors.email && (
           <span className="-mt-1 text-[12px] text-yellow-100">
-            {" "}
-            Please enter your Email address.{" "}
+            
+            Please enter your Email address.
           </span>
         )}
       </div>
 
       <div className="flex flex-col gap-2">
         <label htmlFor="phonenumber" className="lable-style">
-          {" "}
-          Phone Number{" "}
+          
+          Phone Number
         </label>
 
         <div className="flex gap-5">
@@ -123,9 +122,9 @@ const ContactUsForm = () => {
                 return (
                   <option key={index} value={num.code}>
                     {num.code} 
-                    {" "}
+                    
                      -
-                     {" "}
+                     
                     {num.country}
                   </option>
                 );
@@ -154,16 +153,16 @@ const ContactUsForm = () => {
 
         {errors.phoneNo && (
           <span className="-mt-1 text-[12px] text-yellow-100">
-            {" "}
-            {errors.phoneNo.message}{" "}
+            
+            {errors.phoneNo.message}
           </span>
         )}
       </div>
 
       <div className="flex flex-col gap-2">
         <label htmlFor="message" className="lable-style">
-          {" "}
-          Message{" "}
+          
+          Message
         </label>
         <textarea
           name="message"
@@ -176,8 +175,8 @@ const ContactUsForm = () => {
         />
         {errors.message && (
           <span className="-mt-1 text-[12px] text-yellow-100">
-            {" "}
-            Please enter your Message.{" "}
+            
+            Please enter your Message.
           </span>
         )}
       </div>

@@ -21,18 +21,17 @@ import Cart from "./components/Cart/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getUserDetails } from "./services/operations/profileApi";
-import { ACCOUNT_TYPE } from "./utils/constants"
-import AddCourse from "./components/InstructorDash/CouseBuilder"
+import { ACCOUNT_TYPE } from "./utils/constants";
+import AddCourse from "./components/InstructorDash/CouseBuilder";
 import MyCourses from "./components/InstructorDash/MyCourses/MyCourses";
 import EditCourseInst from "./components/InstructorDash/MyCourses/EditCourseInst";
 import Catalog from "./pages/Catalog";
 import CourseView from "./pages/CourseView";
-// import Instructor from "./components/InstructorDash/Dashboard/Instructor";
-
-
+import Instructor from "./components/InstructorDash/Instructor/Instructor";
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./components/Dashboard/ViewCourse/VideoDetails";
 
 const App = () => {
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.profile);
@@ -43,7 +42,7 @@ const App = () => {
       dispatch(getUserDetails(token, navigate));
     }
   }, []);
-  
+
   return (
     <div
       className="
@@ -105,23 +104,48 @@ const App = () => {
         <Route
           element={
             <PrivateRoute>
-            <Dashboard />
+              <Dashboard />
             </PrivateRoute>
           }
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="/dashboard/settings" element={<Settings />} />
-          <Route path="/dashboard/cart" element={<Cart />} />
-          <Route
-            path="/dashboard/enrolled-courses"
-            element={<EnrolledCourses />}
-          />
+
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route path="/dashboard/cart" element={<Cart />} />
+              <Route
+                path="/dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
+              />
+            </>
+          )}
+
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/add-course" element={<AddCourse />} />
               <Route path="dashboard/my-courses" element={<MyCourses />} />
-              {/* <Route path="dashboard/instructor" element={<Instructor />} /> */}
-              <Route path="dashboard/edit-course/:courseId" element={<EditCourseInst />} />
+              <Route path="dashboard/instructor" element={<Instructor />} />
+              <Route
+                path="dashboard/edit-course/:courseId"
+                element={<EditCourseInst />}
+              />
+            </>
+          )}
+        </Route>
+        <Route
+          element={
+            <PrivateRoute>
+              <ViewCourse />
+            </PrivateRoute>
+          }
+        >
+          {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route
+                path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
+              />
             </>
           )}
         </Route>

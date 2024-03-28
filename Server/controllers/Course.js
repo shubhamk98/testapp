@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-prototype-builtins */
 import Course from "../models/Course.js";
 import Category from "../models/Category.js";
@@ -26,10 +27,9 @@ export const createCourse = async (req, res) => {
 
     const thumbnail = req.files.thumbnailImage;
 
-    const tag = JSON.parse(_tag); //Convert the tag and instructions from stringified Array to Array
+    const tag = JSON.parse(_tag); 
     const instructions = JSON.parse(_instructions);
 
-    // Check if any of the required fields are missing
     if (
       !courseName ||
       !courseDescription ||
@@ -47,7 +47,7 @@ export const createCourse = async (req, res) => {
     if (!status || status === undefined) {
       status = "Draft";
     }
-    // Check if the user is an instructor
+
     const instructorDetails = await User.findById(userId, {
       accountType: "Instructor",
     });
@@ -59,7 +59,6 @@ export const createCourse = async (req, res) => {
       });
     }
 
-    // Check if the category given is valid
     const categoryDetails = await Category.findById(category);
     if (!categoryDetails) {
       return res.status(404).json({
@@ -67,13 +66,11 @@ export const createCourse = async (req, res) => {
         message: "Category Details Not Found",
       });
     }
-    // Upload the Thumbnail to Cloudinary
     const thumbnailImage = await uploadImageCloudinary(
       thumbnail,
       process.env.FOLDER_NAME
     );
 
-    // Create a new course with the given details in DB;
     const newCourse = await Course.create({
       courseName,
       courseDescription,
@@ -87,14 +84,12 @@ export const createCourse = async (req, res) => {
       instructions,
     });
 
-    // Add the new course to the User Schema of the Instructor
     await User.findByIdAndUpdate(
       { _id: instructorDetails._id },
       { $push: { courses: newCourse._id } },
       { new: true }
     );
 
-    // Add the new course to the Categories
     const categoryDetails2 = await Category.findByIdAndUpdate(
       { _id: category },
       { $push: { course: newCourse._id } },
@@ -125,7 +120,6 @@ export const editCourse = async (req, res) => {
       return res.status(404).json({ error: "Course not found" });
     }
 
-    // If Thumbnail Image is found, update it
     if (req.files) {
       const thumbnail = req.files.thumbnailImage;
       const thumbnailImage = await uploadImageCloudinary(
@@ -135,7 +129,6 @@ export const editCourse = async (req, res) => {
       course.thumbnail = thumbnailImage.secure_url;
     }
 
-    // Update only the fields that are present in the request body
     for (const key in updates) {
       if (updates.hasOwnProperty(key)) {
         if (key === "tag" || key === "instructions") {
@@ -383,3 +376,4 @@ export const deleteCourse = async (req, res) => {
     });
   }
 };
+

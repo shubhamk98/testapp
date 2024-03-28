@@ -50,8 +50,7 @@ const PublishCourse = () => {
     formData.append("status", courseStatus);
     setLoading(true);
     const result = await editCourseDetails(formData, token);
-    console.log("result",courseStatus);
-    console.log("result",course._id);
+
     if (result) {
       goToCourses();
     }

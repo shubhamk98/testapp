@@ -36,7 +36,6 @@ export const buyCourse = async (
 ) => {
   const toastId = toast.loading("Loading...");
   try {
-    //load the script
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
@@ -57,11 +56,10 @@ export const buyCourse = async (
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message);
     }
-    console.log("PRINTING orderResponse", orderResponse);
 
     //options
     const options = {
-      key: process.env.RAZORPAY_KEY,
+      key: import.meta.env.RAZORPAY_KEY,
       currency: orderResponse.data.message.currency,
       amount: `${orderResponse.data.message.amount}`,
       order_id: orderResponse.data.message.id,
@@ -73,13 +71,11 @@ export const buyCourse = async (
         email: userDetails.email,
       },
       handler: function (response) {
-        //send successful wala mail
         sendPaymentSuccessEmail(
           response,
           orderResponse.data.message.amount,
           token
         );
-        //verifyPayment
         verifyPayment({ ...response, courses }, token, navigate, dispatch);
       },
     };
@@ -128,7 +124,7 @@ export const verifyPayment = async (bodyData, token, navigate, dispatch) => {
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
-    toast.success("payment Successful, ypou are addded to the course");
+    toast.success("payment Successful");
     navigate("/dashboard/enrolled-courses");
     dispatch(resetCart());
   } catch (error) {
