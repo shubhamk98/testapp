@@ -117,11 +117,11 @@ export const getEnrolledCourses = async (req, res) => {
       })
       .exec();
     userDetails = userDetails.toObject();
-    var SubsectionLength = 0;
-    for (var i = 0; i < userDetails.courses.length; i++) {
+    let SubsectionLength = 0;
+    for (let i = 0; i < userDetails.courses.length; i++) {
       let totalDurationInSeconds = 0;
       SubsectionLength = 0;
-      for (var j = 0; j < userDetails.courses[i].courseContent.length; j++) {
+      for (let j = 0; j < userDetails.courses[i].courseContent.length; j++) {
         totalDurationInSeconds += userDetails.courses[i].courseContent[
           j
         ].subSection.reduce(
@@ -142,12 +142,9 @@ export const getEnrolledCourses = async (req, res) => {
       if (SubsectionLength === 0) {
         userDetails.courses[i].progressPercentage = 100;
       } else {
-        // To make it up to 2 decimal point
-        const multiplier = Math.pow(10, 2);
         userDetails.courses[i].progressPercentage =
           Math.round(
-            (courseProgressCount / SubsectionLength) * 100 * multiplier
-          ) / multiplier;
+            (courseProgressCount / SubsectionLength) * 100 )
       }
     }
 

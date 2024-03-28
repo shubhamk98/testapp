@@ -107,11 +107,14 @@ export const categoryPageDetails = async (req, res) => {
       })
       .exec();
 
-    const allCourses = allCategories.flatMap((category) => category.courses);
+    const allCourses = allCategories.flatMap((category) => category.course);
+    const coursesWithEnrolledStudents = allCourses.filter(
+      (course) => course.studentsEnrolled.length > 0
+    );
 
-    const mostSellingCourses = allCourses
-      .sort((a, b) => b.sold - a.sold)
-      .slice(0, 10);
+    const mostSellingCourses = coursesWithEnrolledStudents
+      .sort((a, b) => b.studentsEnrolled.length - a.studentsEnrolled.length)
+      .slice(0, 4);
 
     res.status(200).json({
       success: true,

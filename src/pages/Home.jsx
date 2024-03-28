@@ -1,6 +1,7 @@
 import CtaButton from "../components/Common/CtaButton";
 import Footer from "../components/Common/Footer";
 import HighlightText from "../components/Common/HighlightText";
+import ReviewSlider from "../components/Common/ReviewSlider";
 import CardsWithCode from "../components/Homepage/CardsWithCode";
 import HeroSection from "../components/Homepage/HeroSection";
 import InstructorSection from "../components/Homepage/InstructorSection";
@@ -16,26 +17,7 @@ const Home = () => {
       <div className="-mt-5 md:mt-28">
         <CardsWithCode />
       </div>
-      {/* White section */}
-      <div className="bg-pure-greys-5 text-richblack-700">
-        <div className="homepage_bg h-[300px]">
-          <div className="mx-5 md:mx-36 flex items-center gap-5 justify-center ">
-            <div className="h-[250px]"></div>
-            <div className="text-white flex flex-col md:flex-row gap-4 items-center">
-              <CtaButton
-                text={"Explore Full Catalog"}
-                active={true}
-                linkTo={"/signup"}
-              />
-              <CtaButton
-                text={"Learn More"}
-                active={false}
-                linkTo={"/signup"}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       {/* Small section */}
       <div className="bg-pure-greys-5 text-richblack-700">
@@ -62,11 +44,11 @@ const Home = () => {
 
       <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
         <InstructorSection />
-        {/* <h1 className="text-center text-4xl font-semibold mt-8">
+        <h1 className="text-center text-4xl font-semibold mt-8">
           {" "}
-          review from Other Learners{" "}
+          Review from Other Learners{" "}
         </h1>
-        <ReviewSlider /> */}
+        <ReviewSlider />
       </div>
 
       <Footer />

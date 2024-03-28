@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
-export default function RequirementsField({ name, label, register, setValue, errors, getValues,}) {
+export default function RequirementsField({ name, label, register, setValue, errors}) {
   
   const { editCourse, course } = useSelector((state) => state.course)
   const [requirement, setRequirement] = useState("")
@@ -16,7 +18,7 @@ export default function RequirementsField({ name, label, register, setValue, err
 
   useEffect(() => {
     setValue(name, requirementsList)
-  }, [requirementsList])                                                   //jab jab requirementlist update ho rhi hai tab we set that value;
+  }, [requirementsList])                                                   
 
   const handleAddRequirement = () => {
     if(requirement) {

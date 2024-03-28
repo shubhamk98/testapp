@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -28,15 +28,15 @@ const ReviewSlider = () => {
   }, []);
 
   return (
-    <div className="text-white">
+    <div className="text-white w-full">
       <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
         <Swiper
           className="w-full "
           slidesPerView={3}
           spaceBetween={25}
-          loop={true}
+          loop={reviews.length > 3}
           freeMode={true}
-          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          autoplay={{ delay: 1500, disableOnInteraction: false }}
         >
           {reviews.map((review, i) => {
             return (

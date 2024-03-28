@@ -13,6 +13,8 @@ const Catalog = () => {
   const [active, setActive] = useState(1);
   const [catalogPageData, setCatalogPageData] = useState(null);
 
+  console.log("catalogPageData ",catalogPageData);
+
   useEffect(() => {
     const getCategoryDetails = async () => {
       try {
@@ -136,11 +138,10 @@ const Catalog = () => {
       <div className=" mx-auto box-content w-full max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
         <div className="section_heading text-lg">Frequently Bought</div>
         <div className="py-8">
-          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-            {catalogPageData?.data?.mostSellingCourse
-              ?.slice(0, 4)
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {catalogPageData?.data?.mostSellingCourses
               .map((course, i) => (
-                <Card course={course} key={i} Height={"h-[400px]"} />
+                <Card course={course} key={i} Height={"h-[200px] md:h-[160px]"} />
               ))}
           </div>
         </div>
