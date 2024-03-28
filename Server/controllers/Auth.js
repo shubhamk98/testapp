@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import User from "../models/User.js";
 import Profile from "../models/Profile.js";
 import OTP from "../models/OTP.js";
@@ -44,7 +45,6 @@ export const sendOTP = async (req, res) => {
     const otpPlayload = { email, otp };
 
     const otpBody = await OTP.create(otpPlayload);
-    console.log("Otp body: ", otpBody);
 
     res.status(200).json({
       success: true,
@@ -127,16 +127,16 @@ export const signUp = async (req, res) => {
     const avatar =
       "https://img.freepik.com/free-photo/androgynous-avatar-non-binary-queer-person_23-2151100226.jpg?t=st=1708783274~exp=1708786874~hmac=7ab3da78ed238aae2beae4bea6ee00f117c347cd1a970958c745a4e804153782&w=740";
 
-    console.log({
-      firstName,
-      lastName,
-      email,
-      contactNumber,
-      password: hashedPassword,
-      accountType: accountType,
-      additionalDetails: profileDetails._id,
-      image: avatar,
-    });
+    // console.log({
+    //   firstName,
+    //   lastName,
+    //   email,
+    //   contactNumber,
+    //   password: hashedPassword,
+    //   accountType: accountType,
+    //   additionalDetails: profileDetails._id,
+    //   image: avatar,
+    // });
     const user = await User.create({
       firstName,
       lastName,
@@ -230,7 +230,7 @@ export const login = async (req, res) => {
 export const changePassword = async (req, res) => {
   try {
     const userDetails = await User.findById(req.user.id);
-    console.log("com here", req.body);
+
     const { oldPassword, newPassword } = req.body;
 
     if (!newPassword) {
@@ -264,7 +264,7 @@ export const changePassword = async (req, res) => {
         "Your password is updated",
         PasswordUpdate(userDetails.firstName, updatedUserDetails.email)
       );
-      console.log("Email sent successfully:", emailResponse.response);
+      // console.log("Email sent successfully:", emailResponse.response);
     } catch (error) {
       return res.status(500).json({
         success: false,

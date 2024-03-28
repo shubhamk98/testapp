@@ -11,7 +11,6 @@ const ForgotPassword = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [email, setEmail] = useState("");
 
-  console.log("Email entered", email);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();

@@ -7,7 +7,6 @@ import { removeFromCart } from "../../slices/cartSlice";
 export default function RenderCartCourses() {
   const { cartItems } = useSelector((state) => state.cart);
 
-  console.log("CART ", cartItems);
 
   const dispatch = useDispatch();
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import User from "../models/User.js";
 import { mailSender } from "../utils/mailSender.js";
 import bcrypt from "bcrypt";
@@ -6,7 +7,7 @@ import crypto from "crypto";
 export const resetPasswordToken = async (req, res) => {
   try {
     const email = req.body.email;
-    console.log(email);
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.json({

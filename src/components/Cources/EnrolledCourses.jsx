@@ -10,7 +10,6 @@ const EnrolledCourses = () => {
   const navigate = useNavigate();
   const [enrolledCourses, setEnrolledCourses] = useState(null);
 
-  console.log("enrolledCourses ",enrolledCourses);
 
   const getEnrolledCourses = async () => {
     try {

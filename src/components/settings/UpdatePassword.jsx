@@ -20,7 +20,6 @@ const UpdatePassword = () => {
 
   const submitPasswordForm = async (data) => {
     try {
-      console.log(data);
       await changePassword(token, data);
       navigate("/dashboard/my-profile");
     } catch (error) {

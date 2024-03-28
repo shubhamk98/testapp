@@ -70,7 +70,6 @@ export const updateProfile = (token, formData) => {
 };
 
 export const changePassword = async (token, formData) => {
-  console.log("Formdata", formData);
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
@@ -95,7 +94,6 @@ export const deleteProfile = (token, navigate) => {
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
         Authorization: `Bearer ${token}`,
       });
-      console.log("DELETE_PROFILE_API API RESPONSE............", response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);

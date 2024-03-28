@@ -13,7 +13,6 @@ const Catalog = () => {
   const [active, setActive] = useState(1);
   const [catalogPageData, setCatalogPageData] = useState(null);
 
-  console.log("catalogPageData ",catalogPageData);
 
   useEffect(() => {
     const getCategoryDetails = async () => {
