@@ -8,7 +8,7 @@ import contactUsRoute from "./routes/Contact.js";
 import { connect } from "./config/database.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import { cloudinaryConnect } from "./config/cloudinary.js";
+import cloudinaryConnect  from "./config/cloudinary.js";
 import fileUpload from "express-fileupload";
 import dotenv from "dotenv";
 

@@ -1,6 +1,6 @@
 import cloudinary from "cloudinary";
 
-export const cloudinaryConnect = () => {
+const cloudinaryConnect = () => {
     try {
         cloudinary.config({
             cloud_name: process.env.CLOUD_NAME,
@@ -12,5 +12,6 @@ export const cloudinaryConnect = () => {
     }
 };
 
+export default cloudinaryConnect;
 
 
